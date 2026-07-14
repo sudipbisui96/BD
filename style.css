@@ -313,17 +313,18 @@ body.unlocked {
   }
 }
 
-/* ===== PHOTO BOX - UPDATED WITH THICKER BORDER ===== */
+/* ===== PHOTO BOX - UPDATED with single clean outer border ===== */
 .photo-box {
   width: 180px;
   height: 180px;
-  border-radius: 28px;
+  border-radius: 24px;
   overflow: visible;
   position: relative;
   flex-shrink: 0;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(192, 132, 252, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   transition: transform 0.4s cubic-bezier(0.22, 0.68, 0, 1.2), box-shadow 0.4s ease;
-  border: 6px solid rgba(192, 132, 252, 0.6);
+  border: 2.5px solid rgba(192, 132, 252, 0.5);
+  /* Single clean outer border */
 }
 
 .photo-box-body {
@@ -336,7 +337,7 @@ body.unlocked {
   overflow: hidden;
   position: relative;
   z-index: 3;
-  border-radius: 22px;
+  border-radius: 24px;
 }
 
 .photo-box-body img {
@@ -412,24 +413,17 @@ body.unlocked {
   margin-top: 4px;
 }
 
-/* ===== HIDE SCROLL INDICATOR ON MOBILE ===== */
-@media (max-width: 768px) {
-  .scroll-up {
-    display: none !important;
-  }
-}
-
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
   .photo-box {
     width: 150px;
     height: 150px;
-    border-radius: 24px;
-    border-width: 5px;
+    border-radius: 20px;
+    border-width: 2px;
   }
 
   .photo-box-body {
-    border-radius: 18px;
+    border-radius: 20px;
   }
 
   .frame-halo {
@@ -465,12 +459,12 @@ body.unlocked {
   .photo-box {
     width: 130px;
     height: 130px;
-    border-radius: 20px;
-    border-width: 4px;
+    border-radius: 18px;
+    border-width: 2px;
   }
 
   .photo-box-body {
-    border-radius: 15px;
+    border-radius: 18px;
   }
 
   .frame-halo {
