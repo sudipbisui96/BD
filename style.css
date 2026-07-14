@@ -241,6 +241,20 @@ body.unlocked {
   white-space: nowrap;
 }
 
+/* ===== ✅ UPDATED: HIDE SCROLL UP ON MOBILE ===== */
+@media (max-width: 768px) {
+  .scroll-up {
+    display: none !important;
+  }
+}
+
+/* ===== ✅ UPDATED: HIDE ON TOUCH DEVICES ===== */
+@media (hover: none) and (pointer: coarse) {
+  .scroll-up {
+    display: none !important;
+  }
+}
+
 /* ===== Page Content ===== */
 .page-content {
   display: none;
@@ -324,7 +338,6 @@ body.unlocked {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   transition: transform 0.4s cubic-bezier(0.22, 0.68, 0, 1.2), box-shadow 0.4s ease;
   border: 2.5px solid rgba(192, 132, 252, 0.5);
-  /* Single clean outer border */
 }
 
 .photo-box-body {
