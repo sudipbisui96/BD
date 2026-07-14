@@ -431,9 +431,10 @@ body.unlocked {
     height: 194px;
   }
 
-  /* Make scroll indicator slightly smaller on mobile */
+  /* SCROLL UP visible but smaller on mobile */
   .scroll-up .text {
     font-size: 7px;
+    padding: 1px 6px;
   }
   
   .mouse {
@@ -444,6 +445,12 @@ body.unlocked {
   .mouse::before {
     width: 2.5px;
     height: 6px;
+    bottom: 5px;
+  }
+
+  .scroll-up {
+    bottom: 4px;
+    gap: 2px;
   }
 }
 
@@ -491,20 +498,28 @@ body.unlocked {
     padding: 20px 16px;
   }
 
-  /* Make scroll indicator even smaller on very small screens */
+  /* SCROLL UP even smaller on very small screens */
   .scroll-up .text {
     font-size: 6px;
+    padding: 1px 5px;
+    letter-spacing: 1.5px;
   }
   
   .mouse {
     width: 12px;
     height: 20px;
+    border-width: 1.2px;
   }
   
   .mouse::before {
     width: 2px;
     height: 5px;
     bottom: 4px;
+  }
+
+  .scroll-up {
+    bottom: 3px;
+    gap: 2px;
   }
 }
 
