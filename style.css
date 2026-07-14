@@ -241,13 +241,6 @@ body.unlocked {
   white-space: nowrap;
 }
 
-/* ===== HIDE SCROLL UP ON MOBILE ===== */
-@media (max-width: 768px) {
-  .scroll-up {
-    display: none !important;
-  }
-}
-
 /* ===== Page Content ===== */
 .page-content {
   display: none;
