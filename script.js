@@ -142,7 +142,7 @@
 // COUNTDOWN TIMER
 // ============================================================
 (function() {
-  const TARGET = new Date(2026, 6, 15, 00, 00, 0, 0).getTime();
+  const TARGET = new Date(2026, 6, 15, 0, 0, 0, 0).getTime();
   const daysEl = document.getElementById('days'),
     hoursEl = document.getElementById('hours'),
     minutesEl = document.getElementById('minutes'),
