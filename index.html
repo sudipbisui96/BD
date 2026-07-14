@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Birthday · Launch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Rustic+Roadway&family=Ocean+Trace+Personal&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Countdown Overlay -->
+  <div id="countdownOverlay">
+    <canvas id="countdownBg"></canvas>
+    <div class="countdown-wrapper">
+      <div class="timer" id="timerContainer">
+        <div class="time-block"><div class="num" id="days">00</div><div class="label">Days</div></div>
+        <div class="colon">:</div>
+        <div class="time-block"><div class="num" id="hours">00</div><div class="label">Hours</div></div>
+        <div class="colon">:</div>
+        <div class="time-block"><div class="num" id="minutes">00</div><div class="label">Minutes</div></div>
+        <div class="colon">:</div>
+        <div class="time-block"><div class="num" id="seconds">00</div><div class="label">Seconds</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rocket Section -->
+  <section class="rocket-section" id="rocketSection">
+    <canvas id="c"></canvas>
+    <div class="scroll-up" id="scrollHint">
+      <div class="mouse"></div>
+      <div class="text">SCROLL UP</div>
+    </div>
+  </section>
+
+  <!-- Main Content - Wish Section -->
+  <div class="page-content" id="pageTwo">
+    <section class="wish-section">
+      <div class="photo-frame">
+        <div class="frame-halo"></div>
+        <div class="photo-box">
+          <div class="photo-box-body">
+            <img src="photo.jpg" alt="Birthday Photo" onerror="this.style.display='none'" />
+          </div>
+        </div>
+      </div>
+      <h1 class="hero-title"><span class="happy-text">Happy</span><span class="birthday-text">Birthday</span></h1>
+      <p class="hero-typing-row"><span id="typing"></span><span class="cursor">|</span></p>
+      <p class="greeting-sub">Wishing You Endless Happiness, Success &amp; Good Health..</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
