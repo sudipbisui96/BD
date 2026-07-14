@@ -142,7 +142,7 @@
 // COUNTDOWN TIMER
 // ============================================================
 (function() {
-  const TARGET = new Date(2026, 6, 14, 22, 22, 0, 0).getTime();
+  const TARGET = new Date(2026, 6, 14, 7, 27, 0, 0).getTime();
   const daysEl = document.getElementById('days'),
     hoursEl = document.getElementById('hours'),
     minutesEl = document.getElementById('minutes'),
@@ -604,7 +604,8 @@
     transitioning = false;
   const LOCK_MS = 650;
 
-  function revealPageTwo() {
+  // Expose function globally
+  window.revealPageTwo = function() {
     if (revealed || transitioning) return;
     revealed = true;
     transitioning = true;
@@ -622,7 +623,7 @@
       });
     });
     setTimeout(() => { transitioning = false; }, LOCK_MS);
-  }
+  };
 
   function revealRocket() {
     if (!revealed || transitioning) return;
@@ -669,7 +670,7 @@
     const isRocketHidden = rocketSection.classList.contains('hidden');
     if (e.deltaY > 0) {
       if (!isRocketHidden && !revealed) {
-        revealPageTwo();
+        window.revealPageTwo();
         e.preventDefault();
       }
     }
@@ -683,7 +684,7 @@
 
   document.getElementById('scrollHint').addEventListener('click', () => {
     if (countdownDone && !revealed && !document.getElementById('rocketSection').classList.contains('hidden')) {
-      revealPageTwo();
+      window.revealPageTwo();
     }
   });
 
@@ -699,7 +700,7 @@
     if (touchStartY === null) return;
     const dy = touchStartY - e.touches[0].clientY;
     if (!isRocketHidden && !revealed && dy > 24) {
-      revealPageTwo();
+      window.revealPageTwo();
       e.preventDefault();
       return;
     }
