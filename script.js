@@ -142,7 +142,7 @@
 // COUNTDOWN TIMER
 // ============================================================
 (function() {
-  const TARGET = new Date(2026, 6, 15, 0, 0, 0, 0).getTime();
+  const TARGET = new Date(2026, 6, 14, 7, 27, 0, 0).getTime();
   const daysEl = document.getElementById('days'),
     hoursEl = document.getElementById('hours'),
     minutesEl = document.getElementById('minutes'),
@@ -604,7 +604,8 @@
     transitioning = false;
   const LOCK_MS = 650;
 
-  function revealPageTwo() {
+  // ===== ✅ UPDATED: Expose function globally for mobile =====
+  window.revealPageTwo = function() {
     if (revealed || transitioning) return;
     revealed = true;
     transitioning = true;
@@ -622,7 +623,7 @@
       });
     });
     setTimeout(() => { transitioning = false; }, LOCK_MS);
-  }
+  };
 
   function revealRocket() {
     if (!revealed || transitioning) return;
@@ -663,13 +664,14 @@
   });
   pageTwoObserver.observe(document.getElementById('pageTwo'), { attributes: true, attributeFilter: ['class'] });
 
+  // ===== ✅ UPDATED: Use window.revealPageTwo() =====
   window.addEventListener('wheel', (e) => {
     if (!countdownDone) return;
     const rocketSection = document.getElementById('rocketSection');
     const isRocketHidden = rocketSection.classList.contains('hidden');
     if (e.deltaY > 0) {
       if (!isRocketHidden && !revealed) {
-        revealPageTwo();
+        window.revealPageTwo();
         e.preventDefault();
       }
     }
@@ -681,9 +683,10 @@
     }
   }, { passive: false });
 
+  // ===== ✅ UPDATED: Use window.revealPageTwo() =====
   document.getElementById('scrollHint').addEventListener('click', () => {
     if (countdownDone && !revealed && !document.getElementById('rocketSection').classList.contains('hidden')) {
-      revealPageTwo();
+      window.revealPageTwo();
     }
   });
 
@@ -692,6 +695,7 @@
     touchStartY = e.touches[0].clientY;
   }, { passive: true });
 
+  // ===== ✅ UPDATED: Use window.revealPageTwo() =====
   window.addEventListener('touchmove', (e) => {
     if (!countdownDone) return;
     const rocketSection = document.getElementById('rocketSection');
@@ -699,7 +703,7 @@
     if (touchStartY === null) return;
     const dy = touchStartY - e.touches[0].clientY;
     if (!isRocketHidden && !revealed && dy > 24) {
-      revealPageTwo();
+      window.revealPageTwo();
       e.preventDefault();
       return;
     }
@@ -750,4 +754,76 @@
     setTimeout(tick, del ? 52 : 110);
   }
   tick();
+})();
+
+
+// ============================================================
+// ✅ NEW: FIX SCROLL ANIMATION ON MOBILE
+// ============================================================
+(function() {
+  // Check if device is mobile
+  function isMobile() {
+    return window.innerWidth <= 768 || 'ontouchstart' in window;
+  }
+  
+  // Hide scroll indicator on mobile
+  if (isMobile()) {
+    const scrollHint = document.getElementById('scrollHint');
+    if (scrollHint) {
+      scrollHint.style.display = 'none';
+    }
+  }
+  
+  // Fix scroll animation - ensure page scrolls properly
+  function fixScroll() {
+    const body = document.body;
+    const pageTwo = document.getElementById('pageTwo');
+    
+    // If pageTwo is visible but not scrolling
+    if (pageTwo.classList.contains('entered')) {
+      body.classList.add('unlocked');
+    }
+  }
+  
+  // Check on resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+      const scrollHint = document.getElementById('scrollHint');
+      if (scrollHint) {
+        scrollHint.style.display = 'none';
+      }
+    }
+    fixScroll();
+  });
+  
+  // Fix for touch devices - allow scrolling
+  document.addEventListener('touchmove', function(e) {
+    const pageTwo = document.getElementById('pageTwo');
+    if (pageTwo.classList.contains('entered')) {
+      // Allow natural scrolling
+      return true;
+    }
+  }, { passive: true });
+  
+  // Fix wheel scroll on desktop
+  window.addEventListener('wheel', function(e) {
+    const pageTwo = document.getElementById('pageTwo');
+    const rocketSection = document.getElementById('rocketSection');
+    
+    if (pageTwo.classList.contains('entered')) {
+      // Allow natural scrolling on page two
+      return true;
+    }
+    
+    // Handle rocket to page transition
+    if (!rocketSection.classList.contains('hidden')) {
+      if (e.deltaY > 0 && !pageTwo.classList.contains('shown')) {
+        // Scroll down to reveal page two
+        const revealed = window.revealed || false;
+        if (!revealed) {
+          window.revealPageTwo && window.revealPageTwo();
+        }
+      }
+    }
+  }, { passive: true });
 })();
